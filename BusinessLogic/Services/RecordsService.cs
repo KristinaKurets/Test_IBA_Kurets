@@ -16,13 +16,13 @@ namespace BusinessLogic.Services
     {
         private readonly RecordContext _context;
         private readonly IMapper _mapper;
-        private readonly DbSet<RecordDto> set;
+        
 
         public RecordsService(RecordContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            set = _context.Set<RecordDto>();
+            
 
         }
         public async Task Create(Record item)
@@ -48,11 +48,11 @@ namespace BusinessLogic.Services
 
         public IQueryable<Record> ReadAll()
         {
-            return _mapper.Map<IQueryable<Record>>(set.AsQueryable());
+            return _context.Records.AsQueryable();
         }
         public IQueryable<Record> ReadAll(Func<Record, bool> predicate)
         {
-            return _mapper.Map<IQueryable<Record>>(set.AsParallel().Where((Func<RecordDto, bool>)predicate).AsQueryable());
+            return _context.Records.AsParallel().Where(predicate).AsQueryable();
         }
 
         public IEnumerable<Record> OverSpeed(DateTime date, double speed)
