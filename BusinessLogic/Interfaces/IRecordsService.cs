@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Interfaces
 {
-    public interface IRecordsService<TSource>
+    public interface IRecordsService
     { 
-        Task Create(TSource item);
-        void CreateAll(IEnumerable<TSource> range);
-        IQueryable<TSource> ReadAll();
-        IQueryable<TSource> ReadAll(Func<TSource, bool> predicate);
-        IEnumerable<TSource> OverSpeed(DateTime date, double speed);
-        IEnumerable<TSource> MinMaxSpeed(DateTime date);
+        Task Create(Record item);
+        IQueryable<Record> ReadAll();
+        IQueryable<Record> ReadAll(Func<Record, bool> predicate);
+        IEnumerable<RecordDto> OverSpeed(DateTime date, double speed);
+        IEnumerable<RecordDto> MinMaxSpeed(DateTime date);
     }
 }

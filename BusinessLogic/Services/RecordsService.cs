@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
-    public class RecordsService  : IRecordsService<Record>
+    public class RecordsService  : IRecordsService
     {
         private readonly RecordContext _context;
         private readonly IMapper _mapper;
@@ -31,21 +31,6 @@ namespace BusinessLogic.Services
             await _context.SaveChangesAsync();
         }
 
-        public void CreateAll(IEnumerable<Record> items)
-        {
-            using (var context = new RecordContext())
-            {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Records] ON");
-                    _context.Records.AddRange(_mapper.Map<Record>(items));
-                    _context.SaveChanges();
-                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Records] OFF");
-                    transaction.Commit();
-                }
-            }
-        }
-
         public IQueryable<Record> ReadAll()
         {
             return _context.Records.AsQueryable();
@@ -55,19 +40,19 @@ namespace BusinessLogic.Services
             return _context.Records.AsParallel().Where(predicate).AsQueryable();
         }
 
-        public IEnumerable<Record> OverSpeed(DateTime date, double speed)
+        public IEnumerable<RecordDto> OverSpeed(DateTime date, double speed)
         {
             var result = ReadAll(x => x.Date == date && x.Speed > speed).ToList();
-                return _mapper.Map<IEnumerable<Record>>(result); 
+                return _mapper.Map<IEnumerable<RecordDto>>(result); 
         }
 
-        public IEnumerable<Record> MinMaxSpeed(DateTime date)
+        public IEnumerable<RecordDto> MinMaxSpeed(DateTime date)
         {
             var list = ReadAll().Where(x => x.Date == date).AsQueryable();
             var resultMax = list.Aggregate((curMax, x) => curMax == null || x.Speed > curMax.Speed ? x : curMax);
             var resultMin = list.Aggregate((curMin, x) => curMin == null || x.Speed < curMin.Speed ? x : curMin);
             var result = new List<Record> { resultMin, resultMax };
-            return _mapper.Map<IEnumerable<Record>>(result);
+            return _mapper.Map<IEnumerable<RecordDto>>(result);
         }
 
     }
