@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogic.DataContracts
 {
-    public class RecordDto : BaseEntity
+    public class RecordDto 
     {
         public DateTime Date { get; set; }
         public string RegistrationNumber { get; set; }

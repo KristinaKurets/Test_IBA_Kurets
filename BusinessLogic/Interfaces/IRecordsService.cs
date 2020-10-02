@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.DataContracts;
 using Data.Model;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,8 @@ namespace BusinessLogic.Interfaces
 {
     public interface IRecordsService
     { 
-        Task Create(Record item);
-        IQueryable<Record> ReadAll();
-        IQueryable<Record> ReadAll(Func<Record, bool> predicate);
-        IEnumerable<RecordDto> OverSpeed(DateTime date, double speed);
-        IEnumerable<RecordDto> MinMaxSpeed(DateTime date);
+        Task Create(RecordDto item);
+        ActionResult OverSpeed(DateTime date, double speed);
+        ActionResult MinMaxSpeed(DateTime date);
     }
 }
