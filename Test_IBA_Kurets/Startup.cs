@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLogic.DataContracts;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
 using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +36,7 @@ namespace Test_IBA_Kurets
             services.AddControllers();
             services.AddDbContext<RecordContext>();
             services.AddAutoMapper(typeof(RecordDto));
+            services.AddTransient<IRecordsService, RecordsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

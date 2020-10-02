@@ -12,7 +12,7 @@ namespace BusinessLogic.Interfaces
     public interface IRecordsService
     { 
         Task Create(RecordDto item);
-        ActionResult OverSpeed(DateTime date, double speed);
-        ActionResult MinMaxSpeed(DateTime date);
+        IEnumerable<RecordDto> OverSpeed(DateTime date, double speed);
+        IEnumerable<RecordDto> MinMaxSpeed(DateTime date);
     }
 }
