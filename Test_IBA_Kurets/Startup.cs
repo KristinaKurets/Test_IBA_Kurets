@@ -35,7 +35,7 @@ namespace Test_IBA_Kurets
            
             services.AddControllers();
             services.AddDbContext<RecordContext>();
-            services.AddAutoMapper(typeof(RecordDto));
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IRecordsService, RecordsService>();
         }
 

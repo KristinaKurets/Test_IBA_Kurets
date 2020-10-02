@@ -29,8 +29,8 @@ namespace Test_IBA_Kurets.Controllers
         /// <param name="item">Added record.</param>
         /// <returns>On success returns 204 status code.</returns>
         [HttpPost]
-        [Route("/service/create")]
-        public ActionResult Create(RecordDto item)
+        [Route("create")]
+        public ActionResult Create(Record item)
         {
             _recordsService.Create(item);
             return NoContent();

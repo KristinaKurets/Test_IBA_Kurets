@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 namespace BusinessLogic.Interfaces
 {
     public interface IRecordsService
-    { 
-        Task Create(RecordDto item);
+    {
+        Record Create(Record item);
         IEnumerable<RecordDto> OverSpeed(DateTime date, double speed);
         IEnumerable<RecordDto> MinMaxSpeed(DateTime date);
     }

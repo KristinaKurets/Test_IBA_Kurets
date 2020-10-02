@@ -27,10 +27,11 @@ namespace BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public async Task Create(RecordDto item)
+        public Record Create(Record item)
         {
-            await _context.AddAsync(_mapper.Map<Record>(item));
-            await _context.SaveChangesAsync();
+            _context.Add(item);
+            _context.SaveChanges();
+            return item;
         }
 
 
