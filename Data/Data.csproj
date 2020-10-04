@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20201001092511_init.Designer.cs" />
     <Compile Remove="Migrations\20201001093712_initial.cs" />
     <Compile Remove="Migrations\20201001093712_initial.Designer.cs" />
+    <Compile Remove="Migrations\20201002185007_StoredProceduresAdded.cs" />
+    <Compile Remove="Migrations\20201002185007_StoredProceduresAdded.Designer.cs" />
+    <Compile Remove="Migrations\20201002185655_RunSqlScript.cs" />
+    <Compile Remove="Migrations\20201002185655_RunSqlScript.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
